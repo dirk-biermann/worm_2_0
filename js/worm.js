@@ -25,7 +25,8 @@ class Worm{
         document.getElementById(container).appendChild(this.canvas);
         this.buttonList = [];
         this.speedY = 1; this.speedX = 0;
-        this.timeFrameMSec = 200;
+        this.timeFrameMSec = 150;
+        this.frames = 0;
         this.interval;
         this.wormBody; this.wormFood;
         this.score = 0;
@@ -52,26 +53,18 @@ class Worm{
         }
         if( ev !== null ) { ev.preventDefault(); }
     }
-    initWorm(){
-        this.wormBody = [
-            {xPos:10,yPos:10,fix:true,color:"green"},
-            {xPos:10,yPos:11,fix:true,color:"green"},
-            {xPos:10,yPos:12,fix:true,color:"green"},
-            {xPos:10,yPos:13,fix:true,color:"green"},
-            {xPos:10,yPos:14,fix:true,color:"green"},
-            {xPos:10,yPos:15,fix:true,color:"green"},
-            {xPos:10,yPos:16,fix:true,color:"green"},
-            {xPos:10,yPos:17,fix:true,color:"green"},
-            {xPos:10,yPos:18,fix:true,color:"green"},
-            {xPos:10,yPos:19,fix:false,color:"green"}
-        ];
+    initWormX(){
+        for( let i=0; i < 10; i++){
+            this.wormBody.push({xPos:10,yPos:10+1,fix:true,color:"green"});    
+        }
         this.speedY = 0;
         this.speedX = 1;
         this.wormFood = {xPos:3,yPos:3,fix:true,color:"red"};
     }
-    initWormX(){
-        let xBody, yBody, xForm, yForm;
+    initWorm(){
+        let xBody, yBody, xFood, yFood;
         this.score = 0;
+        this.frames = 0;
         do{
             xBody = this.getRandom(22)+5;
             yBody = this.getRandom(30)+5;
@@ -112,6 +105,7 @@ class Worm{
         this.isDrawing = true;
         let newX = this.wormBody[0].xPos+this.speedX;
         let newY = this.wormBody[0].yPos+this.speedY;
+        this.frames++;
         if( (3 <= newY &&  newY < 40) && (0 <= newX &&  newX < 32) ){
             this.drawObject(this.wormFood);
             let obj = {xPos:newX,yPos:newY,fix:true,color:"green"};
@@ -139,15 +133,17 @@ class Worm{
     }
     drawObject(obj){
         this.ctx.fillStyle = (obj.fix === true) ? obj.color : "#191919";
-        this.ctx.fillRect(obj.xPos.mx(),obj.yPos.mx(),(1).mx(),(1).mx());
+        this.ctx.fillRect(obj.xPos.mx(),obj.yPos.mx(),(1).mx()-1,(1).mx()-1);
     }
     drawScore(){
+        let sec;
         this.ctx.fillStyle = "#393939";
         this.ctx.fillRect(0,0,(40).mx(),(3).mx());
         this.ctx.fillStyle = "white";
         this.ctx.textAlign = "center";
         this.ctx.font = "20px Arial";
-        this.ctx.fillText ( `SCORE: ${this.score.padDigits(3)}`, (17.5).mx(), (2.1).mx());                  
+        sec = Math.floor(this.frames * this.timeFrameMSec / 1000);
+        this.ctx.fillText ( `TIME: ${(Math.floor(sec/60)).padDigits(2)}:${(Math.floor(sec%60)).padDigits(2)}  SCORE: ${this.score.padDigits(3)}`, (16).mx(), (2.1).mx());                  
     }
     getRandom(num) {
         return Math.floor(Math.random() * num);

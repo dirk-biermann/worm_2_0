@@ -1,2 +1,2 @@
-# memory_2_0
-Memory Game 2.0
+# worm_2_0
+Worm Game 2.0
