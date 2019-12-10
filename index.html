@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script type="text/javascript" src="./js/worm.js"></script>
+    <link rel="stylesheet" type="text/css" href="./css/basic.css"/>    
+    <link rel="stylesheet" type="text/css" href="./css/worm.css" media="screen"/>    
+    <title>Worm 2.0</title>
+</head>
+
+<body>
+    <div class="flex-center h-100pc w-100pc">
+        <div id="area" class="boxShadow">
+            <header class="flex-row-c-c just-cont-sa">
+                <div>
+                    <h2 class="txtShadow"><i>WORM 2.0</i></h2>
+                    <h4>"Snake" adaption</h4>
+                </div>
+                <h4>(c) 2019 by D.W.B</h4>
+                <img class="bkgcolor fish" width="40" src="./images/piranhia_mask.png" alt="piranhia">  
+            </header>
+            <hr>
+            <section class="flex flex-row-c-c">
+                <div id="worm-board">
+                </div>
+            </section>
+            <hr>
+            <footer>
+                <div id="worm-pad" class="flex-row-c-c just-cont-se" style="visibility: hidden">
+                    <div class="worm-btn" data-id="37">LEFT</div>
+                    <div><div class="worm-btn" data-id="38">UP</div><br><div class="worm-btn" data-id="40">DOWN</div></div>
+                    <div class="worm-btn" data-id="39">RIGHT</div>
+                </div>
+                <div id="worm-intro" class="flex-row-c-c just-cont-se overlay" style="visibility: visible">
+                    <p>Press button to begin ...</p>
+                    <div class="worm-btn" data-id="0">START</div>
+                </div>
+            </footer>
+        </div>
+    </div>
+</body>
+</html>
